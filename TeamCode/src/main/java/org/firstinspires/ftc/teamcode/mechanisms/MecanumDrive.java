@@ -26,11 +26,12 @@ public class MecanumDrive {
         //Positive values of y move forward, positive values of x strafe to the right, positive values of rx rotate clockwise
 
         double scaleFactor = Math.max(Math.abs(forward)+Math.abs(strafe)+Math.abs(turn), 1.0);
+        double speedLimiter = 0.5;
 
-        double frontLeftPower = ((forward + strafe + turn)/ scaleFactor);
-        double backLeftPower = ((forward - strafe + turn)/ scaleFactor);
-        double frontRightPower = ((forward - strafe - turn)/ scaleFactor);
-        double backRightPower = ((forward + strafe - turn)/ scaleFactor);
+        double frontLeftPower = ((forward + strafe + turn)/ scaleFactor)*speedLimiter;
+        double backLeftPower = ((forward - strafe + turn)/ scaleFactor)*speedLimiter;
+        double frontRightPower = ((forward - strafe - turn)/ scaleFactor)*speedLimiter;
+        double backRightPower = ((forward + strafe - turn)/ scaleFactor)*speedLimiter;
         //Divide by scale factor and cut down
 
         frontLeftDrive.setPower(frontLeftPower);
